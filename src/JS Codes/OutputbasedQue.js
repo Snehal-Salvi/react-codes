@@ -471,13 +471,34 @@ write function for this */
 
 function sum(a, b) {
   if (b == undefined) {
-    return c =>{
-        return c+a;
-    }
+    return (c) => {
+      return c + a;
+    };
   }
 
-  return a+b;
+  return a + b;
 }
-console.log(sum(2, 3));  
-console.log(sum(2)(3));  
+console.log(sum(2, 3));
+console.log(sum(2)(3));
 
+/***********************************************************/
+//40
+
+let xx = "hello";
+let yy = new String("hello");
+console.log(xx == yy); //true
+console.log(xx === yy); //false
+
+/***********************************************************/
+//41
+let v = "false";
+let c = !v;
+
+console.log(c); // Output: false
+
+/*When you apply the logical NOT operator (!) to x, 
+it converts x to its boolean equivalent. 
+In JavaScript, any non-empty string (except for the string "false") 
+is considered truthy. Since x is the string "false", 
+it is treated as truthy, 
+and negating a truthy value with ! results in false. */
