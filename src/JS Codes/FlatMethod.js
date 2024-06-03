@@ -17,36 +17,22 @@ console.log(array.flat(Infinity));
 //******************************************** */
 /*Function to flatten the array */
 
-// Function to flatten an array to a specified depth
-function flattenArray(arr, depth = 1) {
-  // Initialize the result array to store the flattened elements
-  let result = [];
-
-  // Helper function to recursively flatten the array
-  function flatten(currentArray, currentDepth) {
-    // Iterate through each item in the current array
-    for (let item of currentArray) {
-      // If the item is an array and we haven't reached the specified depth, recurse deeper
-      if (Array.isArray(item) && currentDepth < depth) {
-        flatten(item, currentDepth + 1);
-      } else {
-        // Otherwise, push the item to the result array
-        result.push(item);
-      }
+function flattenArray(arr) {
+  const flattenArr = []; // Initialize the accumulator array inside the function
+  
+  for (let i = 0; i < arr.length; i++) {
+    if (Array.isArray(arr[i])) {
+      flattenArr.push(...flattenArray(arr[i])); // Recursively flatten sub-arrays and spread them into the accumulator
+    } else {
+      flattenArr.push(arr[i]); // Push non-array elements into the accumulator
     }
   }
-
-  // Start the flattening process with the initial array and depth 0
-  flatten(arr, 0);
-  // Return the flattened result array
-  return result;
+  
+  return flattenArr; // Return the flattened array
 }
 
-// Test array
-let arr = [[1], [2], [[3]], [[4]]];
+// Example usage:
+const arr = [[1], [2], [[3]], [[4]]];
+console.log(flattenArray(arr));
 
-// Flattening with default depth (1)
-console.log(flattenArray(arr)); // Output: [1, 2, [3], [4]]
 
-// Flattening with infinite depth
-console.log(flattenArray(arr, Infinity)); // Output: [1, 2, 3, 4]

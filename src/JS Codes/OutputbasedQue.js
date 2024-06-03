@@ -502,3 +502,18 @@ In JavaScript, any non-empty string (except for the string "false")
 is considered truthy. Since x is the string "false", 
 it is treated as truthy, 
 and negating a truthy value with ! results in false. */
+
+/***********************************************************/
+//42
+console.log('A'); 
+
+setTimeout(()=>{
+  console.log('B');
+});
+
+['C','D'].forEach((x) =>
+  console.log(x));
+
+console.log('E');
+
+/*Ans: A C D E B*/
