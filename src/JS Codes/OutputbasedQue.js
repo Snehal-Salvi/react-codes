@@ -505,15 +505,32 @@ and negating a truthy value with ! results in false. */
 
 /***********************************************************/
 //42
-console.log('A'); 
+console.log("A");
 
-setTimeout(()=>{
-  console.log('B');
+setTimeout(() => {
+  console.log("B");
 });
 
-['C','D'].forEach((x) =>
-  console.log(x));
+["C", "D"].forEach((x) => console.log(x));
 
-console.log('E');
+console.log("E");
 
 /*Ans: A C D E B*/
+
+/***********************************************************/
+//43
+
+var obj11 = {
+  hello: function () {
+    return "hello " + this.name;
+  },
+  name: "hello",
+};
+
+var obj22 = {
+  hello: obj11.hello,
+  name: "bye",
+};
+
+console.log(obj22.hello()); //hello bye
+console.log(obj22.hello.call(obj11)); //hello hello

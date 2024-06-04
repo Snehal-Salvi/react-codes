@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 
+//show current time
 export default function CurrentTime() {
   const [currentTime, setCurrentTime] = useState(new Date());
 
-//   const updateTime = () => {
-//     setCurrentTime(new Date());
-//   };
- 
+  //   const updateTime = () => {
+  //     setCurrentTime(new Date());
+  //   };
+
   return (
     <div>
       <h1>Current Time:</h1>

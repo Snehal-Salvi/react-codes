@@ -1,5 +1,5 @@
 import { useState } from "react";
-//counter
+//counter increase and decrease by one on click of button
 export const Counter = () => {
   const [count, setCount] = useState(0);
 

@@ -1,34 +1,32 @@
-//make a start button which will incraese from 1 to 10 
-import React, { useState, useEffect } from 'react';
+//make a start button which will incraese from 1 to 10
+import React, { useState } from "react";
 
-export const Timer = () => {
-  const [count, setCount] = useState(0);
-  const [isRunning, setIsRunning] = useState(false);
+export default function App() {
+  const [value, setValue] = useState(0);
+  const [timerId, setTimerId] = useState(null); // To keep track of the interval ID
 
-  useEffect(() => {
-    let timer;
-
-    if (isRunning && count < 10) {
-      timer = setInterval(() => {
-        setCount(prevCount => prevCount + 1);
-      }, 1000);
-    }
-
-    return () => clearInterval(timer);
-  }, [isRunning, count]);
-
-  const handleStart = () => {
-    if (!isRunning) {
-      setCount(0);
-      setIsRunning(true);
+  const startTimer = () => {
+    if (!timerId) {
+      // Ensure only one timer is running
+      const id = setInterval(() => {
+        setValue((prevValue) => {
+          if (prevValue < 10) {
+            return prevValue + 1;
+          } else {
+            clearInterval(id); // Stop the timer when value reaches 10
+            setTimerId(null);
+            return prevValue;
+          }
+        });
+      }, 1000); // Update value every second
+      setTimerId(id); // Save interval ID
     }
   };
 
   return (
-    <div>
-      <div>Count: {count}</div>
-      <button onClick={handleStart}>Start</button>
-    </div>
+    <>
+      <h1>Value: {value}</h1>
+      <button onClick={startTimer}>Start</button>
+    </>
   );
-};
-
+}

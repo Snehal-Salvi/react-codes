@@ -1,27 +1,39 @@
-import React, { useState } from "react";
+import React from "react";
+import "./style.css";
+import { useState } from "react";
 
-//make timer which will increase by one and if click on stop it will stop
-export default function Timer() {
+//create start stop and reset timer
+
+export default function App() {
   const [time, setTime] = useState(0);
-  const [timerId, setTimerId] = useState(null); // To keep track of the interval ID
+  const [timerId, setTimerId] = useState(null);
 
   const startTimer = () => {
-    const id = setInterval(() => {
-      setTime((prevTime) => prevTime + 1); // Increment time by 1 every second
-    }, 1000); // Update time every second
-    setTimerId(id); // Save interval ID
+    // Only start a new timer if there isn't one already running
+    if (!timerId) {
+      const id = setInterval(() => {
+        setTime((previousTime) => previousTime + 1);
+      }, 1000);
+      setTimerId(id);
+    }
   };
 
   const stopTimer = () => {
-    clearInterval(timerId); // Stop the timer
-    setTimerId(null); // Clear interval ID
+    clearInterval(timerId);
+    setTimerId(null);
+  };
+
+  const resetTimer = () => {
+    stopTimer();
+    setTime(0);
   };
 
   return (
-    <>
-      <h1>Timer: {time}</h1>
+    <div>
+      <h1>Timer : {time}</h1>
       <button onClick={startTimer}>Start</button>
       <button onClick={stopTimer}>Stop</button>
-    </>
+      <button onClick={resetTimer}>Reset</button>
+    </div>
   );
 }
