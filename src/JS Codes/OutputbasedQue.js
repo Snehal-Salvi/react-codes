@@ -534,3 +534,114 @@ var obj22 = {
 
 console.log(obj22.hello()); //hello bye
 console.log(obj22.hello.call(obj11)); //hello hello
+
+/***********************************************************/
+//44
+let param = { a: 1 };
+let xyz = [param];
+param["a"] = 2;
+console.log(param);
+console.log(xyz);
+
+//ans: { a: 2 }
+// [ { a: 2 } ]
+
+/***********************************************************/
+//45
+let param = { a: 1 };
+let xyz1 = [{ ...param }];
+param["a"] = 2;
+console.log(param); // {"a": 2}
+console.log(xyz1); // [{"a": 1}]
+
+/***********************************************************/
+//45
+console.log("1"); // Synchronous: Logs "1"
+
+// Schedules a macrotask with a delay of 0ms
+setTimeout(() => {
+  console.log("2");
+}, 0);
+
+let promiseReq = new Promise(function (resolve, reject) {
+  console.log("3"); // Synchronous: Logs "3"
+  resolve("4"); // Immediately resolves the promise
+});
+
+promiseReq
+  .then((data) => {
+    console.log(data); // Microtask: Logs "4"
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
+// Schedules a macrotask with setImmediate
+setImmediate(() => {
+  console.log("5");
+});
+
+console.log("6"); // Synchronous: Logs "6"
+
+// 1 3 6 4 2 5
+
+// console.log("1"); //1
+
+// setImmediate(() => {
+//     console.log("5");
+// });
+
+// let promiseReq = new Promise(function(resolve, reject) {
+//     console.log("3");
+//     resolve("4");
+// });
+
+// promiseReq.then(data => {
+//     console.log(data);
+// }).catch(err => {
+//     console.log(err);
+// });
+
+// setTimeout(() => {
+//     console.log("2");
+// }, 0); //task queue
+
+// console.log("6");
+
+//// 1 3 6 4 2 5
+
+/***********************************************************/
+//46
+
+console.log("Start");
+
+process.nextTick(() => {
+  console.log("Next Tick 1");
+});
+
+Promise.resolve().then(() => {
+  console.log("Promise 1");
+});
+
+process.nextTick(() => {
+  console.log("Next Tick 2");
+});
+
+Promise.resolve().then(() => {
+  console.log("Promise 2");
+});
+
+setTimeout(() => {
+  console.log("Timeout");
+}, 0);
+
+console.log("End");
+
+/*
+Start
+End
+Next Tick 1
+Next Tick 2
+Promise 1
+Promise 2
+Timeout */

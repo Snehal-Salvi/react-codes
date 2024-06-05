@@ -1,30 +1,30 @@
 /**
-Finds the length of the longest substring without repeating characters.
-*/
-
+ * Finds the length of the longest substring without repeating characters.
+ */
 function lengthOfLongestSubstring(s) {
-  // Initialize a set to keep track of characters in the current window
-  const charSet = new Set();
-  // Initialize two pointers for the sliding window
-  let left = 0,
-    right = 0;
-  // Variable to store the maximum length of substring without repeating characters
-  let maxLength = 0;
-  // Iterate through the string with the right pointer
-  while (right < s.length) {
-    // If the character at the right pointer is not in the set, add it to the set
-    if (!charSet.has(s[right])) {
-      charSet.add(s[right]);
-      // Update the maximum length if the current window is larger
-      maxLength = Math.max(maxLength, right - left + 1);
-      // Move the right pointer to the right
-      right++;
+  let map = {}; // Object to store the last seen index of each character
+  let start = 0; // The starting index of the current substring without repeating characters
+  let maxLen = 0; // The maximum length of the substring found so far
+  let arr = s.split(""); // Convert the string into an array of characters
+
+  // Loop through the string, character by character
+  for (let i = 0; i < s.length; i++) {
+    let current = map[arr[i]]; // Get the last seen index of the current character
+
+    // If the character was seen before and its last seen index is within the current window
+    if (current != null && start <= current) {
+      start = current + 1; // Move the start index to the right of the last occurrence of the current character
     } else {
-      // If the character is already in the set, remove the character at the left pointer
-      // and move the left pointer to the right
-      charSet.delete(s[left]);
-      left++;
+      // Update maxLen if the current substring length is greater than the previously recorded maxLen
+      maxLen = Math.max(maxLen, i - start + 1);
     }
+
+    map[arr[i]] = i; // Update the last seen index of the current character
   }
-  return maxLength;
+
+  return maxLen; // Return the length of the longest substring without repeating characters
 }
+
+// Example usage:
+let s = "abcabcbb";
+console.log(lengthOfLongestSubstring(s)); // Output: 3
