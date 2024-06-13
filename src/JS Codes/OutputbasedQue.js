@@ -645,3 +645,47 @@ Next Tick 2
 Promise 1
 Promise 2
 Timeout */
+
+console.log("Start");
+
+Promise.resolve().then(() => console.log("Microtask 1"));
+
+setTimeout(() => console.log("Macrotask 1"), 0);
+
+Promise.resolve().then(() => console.log("Microtask 2"));
+
+setImmediate(() => console.log("Macrotask 2"));
+
+process.nextTick(() => console.log("Next tik console"));
+
+console.log("End");
+
+/*
+Start
+End
+Next tik console
+Microtask 1
+Microtask 2
+Macrotask 1
+Macrotask 2 */
+
+function findMax(arr) {
+  let max = arr[0];
+  for (let i = 1; i <= arr.length; i++) {
+    if (arr[i] > max) {
+      max = arr[i];
+    }
+  }
+  return max;
+}
+
+const myArray = [10, 20, 30, 40, 50];
+console.log(findMax(myArray)); // Expected output: 50
+
+//find error
+/*
+instead of  i <= arr.length we should use  i < arr.length
+The error in the findMax function is in the loop condition. 
+The loop runs one iteration too many due to the condition i <= arr.length. 
+This causes the loop to attempt to access an element at arr[arr.length], 
+which is undefined and results in incorrect behavior. */
