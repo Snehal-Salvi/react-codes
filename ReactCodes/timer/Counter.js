@@ -55,16 +55,16 @@ import { useState } from "react";
 export const Counter2 = () => {
   const [count, setCount] = useState(0);
 
-  const changeCount = (amount) => {
-    setCount(count + amount);
+  const handleCount = (number) => {
+    setCount(count + number);
   };
 
   return (
-    <>
-      {count}
-      <button onClick={() => changeCount(1)}>Increase</button>
-      <button onClick={() => changeCount(-1)}>Decrease</button>
-    </>
+    <div className="App">
+      <h1>{count}</h1>
+      <button onClick={() => handleCount(1)}>Increase</button>
+      <button onClick={() => handleCount(-1)}>Decrease</button>
+    </div>
   );
 };
 
@@ -83,6 +83,37 @@ export default function App() {
       setCount(count + change);
     }
   };
+
+  //another way
+  /* 
+  const changeCount = (number) => {
+    if (count + number > 5) {
+      setCount(5);
+    } else if (count + number < 0) {
+      setCount(0);
+    } else {
+      setCount(count + number);
+    }
+  };
+
+   */
+
+  //another way
+  /* 
+  const changeCount = (number) => {
+    setCount((prevCount) => {
+      const newCount = prevCount + number;
+      if (newCount < 0) {
+        return 0;
+      } else if (newCount > 5) {
+        return 5;
+      } else {
+        return newCount;
+      }
+    });
+  };
+
+  */
 
   return (
     <>

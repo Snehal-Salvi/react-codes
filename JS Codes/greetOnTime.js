@@ -1,22 +1,29 @@
-function greetBasedOnTime() {
-    const currentTime = new Date();
-    const currentHour = currentTime.getHours();
+function greetOnTime(){
+    let hours = new Date().getHours();
 
-    let greeting;
-
-    if (currentHour >= 5 && currentHour < 12) {
-        greeting = "Good morning!";
-    } else if (currentHour >= 12 && currentHour < 17) {
-        greeting = "Good afternoon!";
-    } else if (currentHour >= 17 && currentHour < 21) {
-        greeting = "Good evening!";
-    } else {
-        greeting = "Good night!";
+    if(hours < 12){
+        console.log('Good Morning');
+    }else if(hours < 17){
+        console.log('Good Afternoon');
+    }else{
+        console.log('Good Evening');
     }
-
-    return greeting;
 }
 
-// Test the function
-const greeting = greetBasedOnTime();
-console.log(greeting);
+greetOnTime();
+
+// with return statement
+
+function greetOnTime() {
+    const hrs = new Date().getHours();
+
+    if (hrs < 12) {
+        return 'Good Morning';
+    } else if (hrs < 17) {
+        return 'Good Afternoon';
+    } else {
+        return 'Good Evening';
+    }
+}
+
+console.log(greetOnTime());

@@ -1,30 +1,51 @@
-import React from 'react';
+import React from "react";
 
-function Greeting() {
-    function greetBasedOnTime() {
-        const currentTime = new Date();
-        const currentHour = currentTime.getHours();
+export default function App() {
+  function greetOnTime() {
+    const hours = new Date().getHours();
 
-        let greeting;
-
-        if (currentHour >= 5 && currentHour < 12) {
-            greeting = "Good morning";
-        } else if (currentHour >= 12 && currentHour < 17) {
-            greeting = "Good afternoon";
-        } else if (currentHour >= 17 && currentHour < 21) {
-            greeting = "Good evening";
-        } else {
-            greeting = "Good night";
-        }
-
-        return greeting;
+    if (hours < 12) {
+      return "Good Morning";
+    } else if (hours < 17) {
+      return "Good Afternoon";
+    } else {
+      return "Good Evening";
     }
+  }
 
-    const greeting = greetBasedOnTime();
+  return (
+    <div>
+      <h1>Hello {greetOnTime()} </h1>
+    </div>
+  );
+}
+
+//using use State
+
+import React, { useState, useEffect } from 'react';
+
+export default function App2() {
+    const [greeting, setGreeting] = useState('');
+
+    useEffect(() => {
+        const greetOnTime = () => {
+            const hrs = new Date().getHours();
+            if (hrs < 12) {
+                return 'Good Morning';
+            } else if (hrs < 17) {
+                return 'Good Afternoon';
+            } else {
+                return 'Good Evening';
+            }
+        };
+
+        setGreeting(greetOnTime());
+    }, []); 
 
     return (
-        <h1>Hello, Name. {greeting}!</h1>
+        <div className="App">
+            <h1>{greeting}</h1>
+        </div>
     );
 }
 
-export default Greeting;

@@ -1,35 +1,31 @@
 import React, { useEffect, useState } from "react";
 
-export const FetchApi = () => {
-  const [users, setUsers] = useState([]);
-  const [error, setError] = useState(null);
+export default function App() {
+  const [data, setData] = useState([]);
 
   useEffect(() => {
-    const fetchUsers = async () => {
+    const fetchData = async () => {
       try {
-        const response = await fetch(
-          "https://jsonplaceholder.typicode.com/users"
-        );
+        const response = await fetch("https://jsonplaceholder.typicode.com/users");
         const data = await response.json();
         console.log(data);
-        setUsers(data);
+        setData(data);
       } catch (error) {
-        console.error("Error fetching users:", error);
+        console.error("Error fetching data:", error);
       }
     };
 
-    fetchUsers();
+    fetchData();
   }, []);
 
   return (
-    <>
-      {error && <div>Error: {error}</div>}
-      {users.map((user) => (
-        <div key={user.id}>
-          <h1>{user.name}</h1>
-          <h2>{user.address.street}</h2>
-        </div>
+    <div>
+      {data.map((user) => (
+        <ul key={user.id}>
+          <li>{user.name}</li>
+          <li>{user.address.city}</li>
+        </ul>
       ))}
-    </>
+    </div>
   );
-};
+}

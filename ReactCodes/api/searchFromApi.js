@@ -1,47 +1,48 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
-const UserSearch = () => {
-  const [users, setUsers] = useState([]);
+export default function App() {
+  const [data, setData] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [filteredUsers, setFilteredUsers] = useState([]);
 
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/users")
-      .then((response) => response.json())
+      .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        setUsers(data);
-        setFilteredUsers(data); // Initially set filtered users to all users
+        setData(data);
       });
   }, []);
 
-  const handleSearchChange = (event) => {
-    setSearchQuery(event.target.value);
-    filterUsers(event.target.value);
-  };
-
-  const filterUsers = (query) => {
-    const filtered = users.filter((user) =>
-      user.name.toLowerCase().includes(query.toLowerCase())
-    );
-    setFilteredUsers(filtered);
-  };
+  const filteredUsers = data.filter((user) =>
+    user.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <div>
+      <h1>Users List</h1>
       <input
         type="text"
+        placeholder="Search users..."
         value={searchQuery}
-        onChange={handleSearchChange}
-        placeholder="Search by name..."
+        onChange={(e) => setSearchQuery(e.target.value)}
       />
-      <ul>
+      <div>
         {filteredUsers.map((user) => (
-          <li key={user.id}>{user.name}</li>
+          <ul key={user.id}>
+            <li key={user.id}>{user.name}</li>
+          </ul>
         ))}
-      </ul>
+      </div>
+
+      {/* no users found text if nothing is found */}
+      {/* {filteredUsers.length > 0 ? (
+        filteredUsers.map((user) => (
+          <div key={user.id}>
+            <h1>{user.name}</h1>
+          </div>
+        ))
+      ) : (
+        <p>No results found</p>
+      )} */}
     </div>
   );
-};
-
-export default UserSearch;
+}
