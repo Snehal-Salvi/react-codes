@@ -16,5 +16,5 @@ export const DisplayArray = () => {
            
         </ul>
     </div>
-  )
+  ) 
 }

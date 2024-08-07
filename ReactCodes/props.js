@@ -10,4 +10,4 @@ export const Props = (props) => {
        <hr/>
     </div>
   )
-}
+} 

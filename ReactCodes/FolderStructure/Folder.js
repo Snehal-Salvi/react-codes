@@ -9,13 +9,20 @@ const Folder = ({ data }) => {
 
   return (
     <li>
-      <span onClick={handleClick}>{data.name}</span>
-      {isOpen && (
+      <span
+        onClick={handleClick}
+        style={{
+          cursor: "pointer",
+          fontWeight: data.type === "folder" ? "bold" : "normal",
+        }}
+      >
+        {data.name}
+      </span>
+      {isOpen && data.childrens && (
         <ul>
-          {data.childrens &&
-            data.childrens.map((child) => (
-              <Folder key={child.id} data={child} />
-            ))}
+          {data.childrens.map((child) => (
+            <Folder key={child.id} data={child} />
+          ))}
         </ul>
       )}
     </li>

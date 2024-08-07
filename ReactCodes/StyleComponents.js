@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-// Define the styled component
+//install: npm install styled-components
 const Box = styled.div`
   width: 200px;
   height: 200px;

@@ -1,27 +1,32 @@
 import React, { useEffect, useState } from "react";
 
-export default function WindowSize() {
+export default function App() {
   const [windowSize, setWindowSize] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
   });
 
   useEffect(() => {
-    window.addEventListener("resize", () => {
+    const handleResize = () => {
       setWindowSize({
         width: window.innerWidth,
         height: window.innerHeight,
       });
-    });
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   return (
-    <>
-      <div style={{ backgroundColor: "pink", height: "100px", width: "500px" }}>
-        <h1 style={{ textAlign: "center" }}>
-          window Size = {windowSize.width} X {windowSize.height}
-        </h1>
-      </div>
-    </>
+    <div>
+      <h1>
+        {windowSize.width} * {windowSize.height}
+      </h1>
+    </div>
   );
 }

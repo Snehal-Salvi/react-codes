@@ -1,21 +1,18 @@
-import React from "react";
+import React from 'react';
+import './Modal.css';
 
-// Modal component that takes isOpen, onClose, and children as props
 const Modal = ({ isOpen, onClose, children }) => {
-  // If isOpen is false, return null to not render anything
-  if (!isOpen) return null;
+  if (!isOpen) {
+    return null;
+  }
 
   return (
-    // Overlay that covers the entire screen
-    <div className="modal-overlay" onClick={onClose}>
-      {/* Content of the modal */}
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        {/* Close button inside the modal */}
-        <button className="modal-close" onClick={onClose}>
-          &times;
-        </button>
-        {/* Children content passed from the parent component */}
+    <div className="modal-overlay">
+      <div className="modal-content">
         {children}
+        <button className="modal-button" onClick={onClose}>
+          Close
+        </button>
       </div>
     </div>
   );

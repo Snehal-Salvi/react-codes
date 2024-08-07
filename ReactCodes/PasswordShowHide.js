@@ -1,18 +1,13 @@
-import { useState } from "react";
-import "./styles.css";
+import React, { useState } from 'react';
 
 export default function App() {
-  const [password, setPassword] = useState(true);
-
-  const handleTogglePassword = () => {
-    setPassword(!password);
-  };
+  const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <div className="App">
-      <input placeholder="password" type={password ? "password" : "text"} />
-      <button onClick={handleTogglePassword}>
-        {password ? "Show Password" : "Hide Password"}
+    <div>
+      <input type={showPassword ? 'text' : 'password'} />
+      <button onClick={() => setShowPassword(!showPassword)}>
+        {showPassword ? 'Hide Password' : 'Show Password'}
       </button>
     </div>
   );

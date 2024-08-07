@@ -1,4 +1,3 @@
-import CurrentTimeTimer from "./ReactCodes/timer/currentTimeTimer";
 import { Props } from "./ReactCodes/props";
 
 function App() {
@@ -7,7 +6,6 @@ function App() {
   return (
     <>
       <Props country={country} />
-      <CurrentTimeTimer />
     </>
   );
 }

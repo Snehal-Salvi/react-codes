@@ -24,39 +24,50 @@ const countries = [
   },
 ];
 
-export default function Country() {
-  const [selectedCountry, setSelectedCountry] = useState("");
-  const [selectedState, setSelectedState] = useState("");
+//show countries in dropdown
 
-  const handleCountry = (e) => {
-    setSelectedCountry(e.target.value);
-    setSelectedState("");
-  };
-
-  const handleState = (e) => {
-    setSelectedState(e.target.value);
-  };
-
+export default function App() {
   return (
-    <div className="App">
-      <select id="country" value={selectedCountry} onChange={handleCountry}>
+    <div>
+      <select>
         {countries.map((country, index) => (
           <option key={index} value={country.name}>
             {country.name}
           </option>
         ))}
       </select>
-
-     {selectedCountry && (
-        <select id="state" value={selectedState} onChange={handleState}>
-          {countries.find(country => country.name === selectedCountry)
-            .cities.map((state, index) => (
-              <option key={index} value={state}>
-                {state}
-              </option>
-            ))}
-        </select>
-      )}
     </div>
   );
 }
+
+//final code 
+
+export default function App() {
+  const [selectedCountry, setSelectedCountry] = useState(countries[0]);
+
+  const handleCountryChange = (e) => {
+    const country = countries.find((country) => country.name === e.target.value);
+    setSelectedCountry(country);
+  };
+
+  return (
+    <div>
+      <select value={selectedCountry.name} onChange={handleCountryChange}>
+        {countries.map((country, index) => (
+          <option key={index} value={country.name}>
+            {country.name}
+          </option>
+        ))}
+      </select>
+      <br />
+      <select>
+        {selectedCountry.cities.map((city, index) => (
+          <option key={index} value={city}>
+            {city}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+}
+
