@@ -1,0 +1,10 @@
+| **Algorithm Name** | **Average Time Complexity** | **Space Complexity** | **Primary Loop Type** |
+|--------------------|-----------------------------|----------------------|-----------------------|
+| **Linear Search**  | O(n)                        | O(1)                 | `for`                 |
+| **Binary Search**  | O(log n)                    | O(1)                 | `while`               |
+| **Selection Sort** | O(n^2)                      | O(1)                 | `for`                 |
+| **Bubble Sort**    | O(n^2)                      | O(1)                 | `for`                 |
+| **Insertion Sort** | O(n^2)                      | O(1)                 | `for`and while        |
+| **Merge Sort**     | O(n log n)                  | O(n)                 |  while                |
+| **Quick Sort**     | O(n log n)                  | O(log n)             | `for`                 |
+---------------------------------------------------------------------------------------------------
