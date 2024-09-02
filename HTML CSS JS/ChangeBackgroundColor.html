@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .list li{
+  background-color: blue;
+  color: white;
+}
+</style>
+<body>
+    <ul class="list" id="list">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        </ul>
+
+        <script>
+            const listItems = document.querySelectorAll('#list li');
+                listItems.forEach(item => {
+                item.addEventListener('click', function(){
+                if(this.style.backgroundColor === 'blue'){
+                this.style.backgroundColor = 'red';
+                }else{
+                    this.style.backgroundColor = 'blue'
+                }
+                    });
+                    });
+        </script>
+</body>
+</html>
