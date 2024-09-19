@@ -3,16 +3,16 @@
 //first i will show you using normal function
 //i  want to create counter
 function createCounter() {
-  let counter = 0;
-  counter += 1;
-  return counter;
+  let count = 0;
+  count++;
+  return count;
 }
 
 console.log(createCounter()); // Outputs: 1
 console.log(createCounter()); // Outputs: 1
 console.log(createCounter()); // Outputs: 1
 //here Each time createCounter() is called,
-//it creates a new instance of counter and initializes it to 0.
+//it creates a new instance of count and initializes it to 0.
 
 // now lets do it with closure
 
@@ -20,7 +20,7 @@ function createCounter() {
   let count = 0; // This variable is part of the closure
 
   return function () {
-    count += 1; // The returned function has access to `count`
+    count++; // The returned function has access to `count`
     return count;
   };
 }

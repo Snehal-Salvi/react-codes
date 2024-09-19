@@ -1,45 +1,61 @@
-/*
-Use call when you want to pass individual arguments 
-and call the function immediately.
-Use apply when you have an array of arguments 
-and want to call the function immediately.
-Use bind when you need to create a new function with 
-a specific this context for later execution.
- */
-
 // Call:
-function greet(greeting, punctuation) {
-  console.log(`${greeting}, ${this.name}${punctuation}`);
+/*The call() method allows you to call a function 
+with a specified this value and arguments provided individually.  */
+
+function greet(name) {
+  console.log("Hello " + name); //Alice
+  console.log("Hey " + this.name); //John
 }
 
-const person = { name: "Alice" };
+let person = {
+  name: "John",
+};
 
-// Calling greet with `this` set to `person`
-greet.call(person, "Hello", "!");
-// Output: "Hello, Alice!"
+greet.call(person, "Alice");
+
+/* Output:
+Hello Alice
+Hey John 
+*/
 
 //apply
-function greet(greeting, punctuation) {
-  console.log(`${greeting}, ${this.name}${punctuation}`);
+/*The apply() method is similar to the call() method, 
+but it takes an array of arguments instead of individual arguments. */
+
+function greet(name,age){
+  console.log("Hello " + name + " your age is " + age )
+  console.log("Hey " + this.name)
 }
 
-const person = { name: "Bob" };
-const args = ["Hi", "!!"];
+let person = {
+   name: "John"
+}
 
-// Calling greet with `this` set to `person` and arguments as an array
-greet.apply(person, args);
-// Output: "Hi, Bob!!"
+greet.apply(person,["Alice",25]);
+
+/*Output: 
+Hello Alice your age is 25
+Hey John
+*/
 
 //bind
-function greet(greeting, punctuation) {
-  console.log(`${greeting}, ${this.name}${punctuation}`);
+/*It binds a function to a specific this value, 
+but instead of calling it immediately, it returns a new function. */
+
+function greet(name) {
+  console.log("Hello " + name);
+  console.log("Hey " + this.name);
 }
 
-const person = { name: "Charlie" };
+let person = {
+   name: "John"
+}
 
-// Creating a new function with `this` bound to `person`
-const greetPerson = greet.bind(person, "Hey");
+let greetPerson = greet.bind(person, "Alice");
 
-// You can call greetPerson later with additional arguments
-greetPerson("!!!");
-// Output: "Hey, Charlie!!!"
+greetPerson();
+
+/*Output:
+Hello Alice
+Hey John
+*/

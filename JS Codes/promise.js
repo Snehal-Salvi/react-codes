@@ -7,7 +7,7 @@ function checkEvenNumber(number) {
       reject(`${number} is odd`);
     }
   });
-}
+} 
 
 checkEvenNumber(4)
   .then((message) => {
