@@ -7,7 +7,7 @@ function bubbleSort(arr) {
 
     // Traverse the array up to the last unsorted element
     for (let j = 0; j < n - i - 1; j++) {
-      if (arr[j] > arr[j + 1]) {
+      if (arr[j] > arr[j + 1]) { //for descending order change (arr[j] < arr[j + 1])
         // Swap the elements
         [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
         swapped = true;

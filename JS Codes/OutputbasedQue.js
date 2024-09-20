@@ -689,3 +689,23 @@ The error in the findMax function is in the loop condition.
 The loop runs one iteration too many due to the condition i <= arr.length. 
 This causes the loop to attempt to access an element at arr[arr.length], 
 which is undefined and results in incorrect behavior. */
+
+/***********************************************************/
+//47
+
+function foo() {
+  let a = b = 0;
+  a++;
+  return a;
+}
+ 
+foo();
+console.log (typeof a); // => ???
+console.log (typeof b); // => ???
+
+// console.log(typeof a); // => "undefined"
+// console.log(typeof b); // => "number"
+/*
+typeof a will return "undefined" because a is not accessible outside the function.
+typeof b will return "number" because b is now a global variable and holds the value 0.
+*/
