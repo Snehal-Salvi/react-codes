@@ -694,14 +694,14 @@ which is undefined and results in incorrect behavior. */
 //47
 
 function foo() {
-  let a = b = 0;
+  let a = (b = 0);
   a++;
   return a;
 }
- 
+
 foo();
-console.log (typeof a); // => ???
-console.log (typeof b); // => ???
+console.log(typeof a); // => ???
+console.log(typeof b); // => ???
 
 // console.log(typeof a); // => "undefined"
 // console.log(typeof b); // => "number"
@@ -709,3 +709,53 @@ console.log (typeof b); // => ???
 typeof a will return "undefined" because a is not accessible outside the function.
 typeof b will return "number" because b is now a global variable and holds the value 0.
 */
+
+/***********************************************************/
+//48
+const array = [1, 2, 3];
+array[10] = 10;
+console.log(array.length); //11
+
+/* The array after this operation will look like: 
+[1, 2, 3, undefined, undefined, undefined, undefined, undefined, undefined, undefined, 10]*/
+
+/***********************************************************/
+//49
+
+console.log([] == []); //false
+
+/* In JavaScript, the equality (==) and strict equality (===) operators 
+compare object references when it comes to arrays (and other objects).*/
+
+/***********************************************************/
+//50
+
+let a = 2 + "5";
+console.log(a); //25
+
+let a = 25 - "5";
+console.log(a); //20
+
+let a = 5 * "4";
+console.log(a); //20
+
+let a = 25 / "5";
+console.log(a); //5
+
+/*
+2 + '5': The number 2 is concatenated with the string '5', resulting in the string '25'.
+25 - '5': The string '5' is coerced into the number 5, and subtraction is performed, resulting in 20.
+5 * '4': The string '4' is coerced into the number 4, and multiplication gives 20.
+25 / '5': The string '5' is coerced into the number 5, and division results in 5.
+ */
+
+/***********************************************************/
+//51
+
+const numbers = [1, 2, 3, 4, 5];
+const [a] = numbers;
+
+console.log(a); //1
+
+/*The destructuring assignment const [a] = numbers takes the 
+first element of the numbers array (which is 1) and assigns it to the variable a.*/
