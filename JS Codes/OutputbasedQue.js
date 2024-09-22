@@ -759,3 +759,30 @@ console.log(a); //1
 
 /*The destructuring assignment const [a] = numbers takes the 
 first element of the numbers array (which is 1) and assigns it to the variable a.*/
+
+/***********************************************************/
+//52
+console.log("1: Synchronous code start");
+
+setTimeout(() => {
+  console.log("5: Macrotask - setTimeout");
+}, 0);
+
+Promise.resolve().then(() => {
+  console.log("3: Microtask - Promise");
+});
+
+(async function () {
+  await Promise.resolve();
+  console.log("4: Microtask - Async/Await");
+})();
+
+console.log("2: Synchronous code end");
+
+/*
+1: Synchronous code start
+2: Synchronous code end
+3: Microtask - Promise
+4: Microtask - Async/Await
+5: Macrotask - setTimeout
+*/

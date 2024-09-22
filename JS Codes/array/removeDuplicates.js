@@ -24,7 +24,9 @@ function removeDuplicates(arr) {
 
 console.log(removeDuplicates(array)); // Outputs: [1, 2, 3, 4]
 
-//filter method
+//*********************************************************
+
+//2. filter method
 const array2 = [1, 2, 3, 4, 2, 3, 5];
 
 function removeDuplicates(arr) {
@@ -33,6 +35,8 @@ function removeDuplicates(arr) {
 
 const uniqueArray = removeDuplicates(array2);
 console.log(uniqueArray); // Outputs: [1, 2, 3, 4, 5]
+
+//*********************************************************
 
 // set method
 /*
