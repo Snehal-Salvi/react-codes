@@ -2,82 +2,80 @@
 
 // 1. Create the Progress Bar UI
 
-import React from 'react';
+import "./styles.css";
+//progres bar which will increase by 10 px after every 10 sec
 
-const ProgressBar = () => {
+export default function App() {
   return (
-    <div style={{ width: '100%', backgroundColor: '#e0e0e0', borderRadius: '5px', overflow: 'hidden' }}>
-      <div
-        style={{
-          width: '0%', // Start with 0 width
-          height: '20px',
-          backgroundColor: '#76c7c0',
-          transition: 'width 0.5s ease-in-out',
-        }}
-      ></div>
+    <div className="App">
+      <h1>Progress Bar</h1>
+      <div style={{ width: "100%", height: "20px", backgroundColor: "grey" }}>
+        <div
+          style={{ width: "10%", height: "20px", backgroundColor: "blue" }}
+        ></div>
+      </div>
     </div>
   );
-};
+}
 
-export default ProgressBar;
 
 // 2. Add State for Progress
 
-import React, { useState, useEffect } from 'react';
+import { useState } from "react";
+import "./styles.css";
+//progres bar which will increase by 10 px after every 10 sec
 
-const ProgressBar = () => {
-  const [progress, setProgress] = useState(0); // Initialize progress to 0
-
+export default function App() {
+  const [progress, setProgress] = useState(0);
   return (
-    <div style={{ width: '100%', backgroundColor: '#e0e0e0', borderRadius: '5px', overflow: 'hidden' }}>
-      <div
-        style={{
-          width: `${progress}%`, // Use progress for width
-          height: '20px',
-          backgroundColor: '#76c7c0',
-          transition: 'width 0.5s ease-in-out',
-        }}
-      ></div>
+    <div className="App">
+      <h1>Progress Bar</h1>
+      <div style={{ width: "100%", height: "20px", backgroundColor: "grey" }}>
+        <div
+          style={{ width: "10%", height: "20px", backgroundColor: "blue" }}
+        ></div>
+      </div>
     </div>
   );
-};
+}
 
-export default ProgressBar;
 
 // 3. Implement the Logic to Update Progress
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
+import "./styles.css";
 
-const ProgressBar = () => {
-  const [progress, setProgress] = useState(0); // Initialize progress to 0
+export default function App() {
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setProgress((prev) => {
-        if (prev < 100) {
-           
-          return prev + 10; // Increase progress by 10
-        } else {
-          clearInterval(interval); // Stop when it reaches or exceeds 100
-          return prev;
+      setProgress((prevProgress) => {
+        // Increase progress by 10px, but stop at 100%
+        if (prevProgress >= 100) {
+          clearInterval(interval);
+          return 100;
         }
+        return prevProgress + 10;
       });
-    }, 10000); // Update every 10 seconds
+    }, 10000); // 10 seconds interval
 
-    return () => clearInterval(interval); // Cleanup on unmount
+    return () => clearInterval(interval); // Cleanup on component unmount
   }, []);
 
   return (
-    <div style={{ width: '100%', backgroundColor: '#e0e0e0', borderRadius: '5px', overflow: 'hidden' }}>
-      <div
-        style={{
-          width: `${progress}px`, // Use pixels for width
-          height: '20px',
-          backgroundColor: '#76c7c0',
-          transition: 'width 0.5s ease-in-out',
-        }}
-      ></div>
+    <div className="App">
+      <h1>Progress Bar</h1>
+      <div style={{ width: "100%", height: "20px", backgroundColor: "grey" }}>
+        <div
+          style={{
+            width: `${progress}%`,
+            height: "20px",
+            backgroundColor: "blue",
+          }}
+        ></div>
+      </div>
+      <p>{progress}%</p>
     </div>
   );
-};
+}
 
-export default ProgressBar;
