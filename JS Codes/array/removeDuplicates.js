@@ -8,7 +8,6 @@ function removeDuplicates(arr) {
 
     for (let j = 0; j < i; j++) {
       if (arr[i] === arr[j]) {
-        // Using `===` for strict equality check
         isDuplicate = true;
         break;
       }
@@ -26,7 +25,15 @@ console.log(removeDuplicates(array)); // Outputs: [1, 2, 3, 4]
 
 //*********************************************************
 
-//2. filter method
+// 2. set method
+
+const array = [1, 2, 2, 3, 4, 4, 5];
+const uniqueArray = [...new Set(array)];
+
+console.log(uniqueArray); // Output: [1, 2, 3, 4, 5]
+
+//*********************************************************
+//3. filter method
 const array2 = [1, 2, 3, 4, 2, 3, 5];
 
 function removeDuplicates(arr) {
@@ -35,13 +42,3 @@ function removeDuplicates(arr) {
 
 const uniqueArray = removeDuplicates(array2);
 console.log(uniqueArray); // Outputs: [1, 2, 3, 4, 5]
-
-//*********************************************************
-
-// set method
-/*
-const array = [1, 2, 2, 3, 4, 4, 5];
-const uniqueArray = [...new Set(array)];
-
-console.log(uniqueArray); // Output: [1, 2, 3, 4, 5]
-*/
