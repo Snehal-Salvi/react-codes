@@ -786,3 +786,21 @@ console.log("2: Synchronous code end");
 4: Microtask - Async/Await
 5: Macrotask - setTimeout
 */
+
+/***********************************************************/
+//53
+const length = 4;
+const numbers = [];
+for (var i = 0; i < length; i++) {
+    numbers.push(i + 1);
+}
+
+/*[1, 2, 3, 4]
+
+Here's the breakdown of each iteration:
+
+When i = 0, numbers.push(0 + 1) → numbers = [1]
+When i = 1, numbers.push(1 + 1) → numbers = [1, 2]
+When i = 2, numbers.push(2 + 1) → numbers = [1, 2, 3]
+When i = 3, numbers.push(3 + 1) → numbers = [1, 2, 3, 4]
+*/
