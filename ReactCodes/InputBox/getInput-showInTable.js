@@ -15,23 +15,34 @@ export default function App() {
     <div>
       <input
         type="text"
-        placeholder="type here"
+        placeholder="Type here"
         value={data}
         onChange={(e) => setData(e.target.value)}
       />
       <button onClick={handleAdd}>Add</button>
 
-      <ul>
-        {items.map((item, index) => (
-          <li key={index}>{item}</li>
-        ))}
-      </ul>
+      {/* Display items in a table */}
+      <table border={1}>
+        <thead>
+          <tr>
+            <th>Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          {items.map((item, index) => (
+            <tr key={index}>
+              <td>{item}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }
 
 /**************************************************************************/
 //add two input Name and Age
+
 import React, { useState } from "react";
 
 export default function App() {
@@ -42,14 +53,14 @@ export default function App() {
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: value, // Dynamically update the correct field
+      [name]: value, // Dynamically update the field
     });
   };
 
   const handleAdd = () => {
     if (formData.name && formData.age) {
       setItems([...items, formData]);
-      setFormData({ name: "", age: "" }); // Reset form fields
+      setFormData({ name: "", age: "" }); // Reset form
     }
   };
 
@@ -58,26 +69,36 @@ export default function App() {
       <input
         type="text"
         name="name"
-        placeholder="Enter name"
+        placeholder="Name"
         value={formData.name}
         onChange={handleInputChange}
       />
       <input
         type="number"
         name="age"
-        placeholder="Enter age"
+        placeholder="Age"
         value={formData.age}
         onChange={handleInputChange}
       />
       <button onClick={handleAdd}>Add</button>
 
-      <ul>
-        {items.map((item, index) => (
-          <li key={index}>
-            Name: {item.name}, Age: {item.age}
-          </li>
-        ))}
-      </ul>
+      {/* Display items in a table */}
+      <table border={1}>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Age</th>
+          </tr>
+        </thead>
+        <tbody>
+          {items.map((item, index) => (
+            <tr key={index}>
+              <td>{item.name}</td>
+              <td>{item.age}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }
